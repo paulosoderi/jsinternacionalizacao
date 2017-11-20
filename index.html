@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/i18next.min.js"></script>
+	<body>
+		<div class="i18container">
+			<p style="margin-bottom:0px;"><small><span data-i18n="common.changelanguage"></span></small></p>
+			<a id="pt_enable" class="set_pt" ><img src="images/brasilflag.png"></a>
+			<a id="en_enable" class="set_en" style="margin-right:2px"><img src="images/usaflag.png"></a>  
+			<span data-i18n="i.know"></span></small>
+		</div>
+
+
+		<script>
+			$(document).ready(function (){
+				$.i18n.init({
+					resGetPath: 'locales/__lng__.json',
+					load: 'unspecific',
+					fallbackLng: false,
+					lng: 'pt'
+				}, function (t){
+					$('.i18container').i18n();
+				});
+
+				$('.set_en').on('click', function (){
+					i18n.setLng('en', function(){
+						$('.i18container').i18n();
+						$('#pt_enable').css("cursor","pointer");
+						$('#en_enable').css("cursor","default");
+					});	
+				});
+
+				$('.set_pt').on('click', function (){
+					i18n.setLng('pt', function(){
+						$('.i18container').i18n();
+						$('#en_enable').css("cursor","pointer");
+						$('#pt_enable').css("cursor","default");
+					});
+				})		
+				$('#en_enable').css("cursor","pointer");
+				$('#pt_enable').css("cursor","default");
+			});
+		</script>
+	</body>
+</html>
